@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 2nd Anniversary!</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- ใส่ลิงก์ฟอนต์ Mitr และ Cooper -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600&family=Cooper+Hewitt&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 1. ส่วนพื้นหลังและพลุ -->
+    <div id="fireworks-container">
+        <div id="firework-small-left" class="firework"></div>
+        <div id="firework-small-right" class="firework"></div>
+        <div id="firework-big" class="firework"></div>
+    </div>
+
+    <!-- 2. ป๊อปอัปคำอวยพร -->
+    <div id="anniversary-popup" class="hidden">
+        <h1 class="cooper-font">Happy 2nd Anniversary, my love!</h1>
+    </div>
+
+    <!-- 3. เกมกดหัวใจ -->
+    <div id="heart-section" class="hidden">
+        <div id="heart-outer">
+            <div id="heart-fill"></div>
+        </div>
+        <p id="heart-instruction" class="mitr-font">กดค้างที่หัวใจ</p>
+        <p id="heart-holding" class="mitr-font hidden">กดค้างไว้นะแฟน</p>
+    </div>
+
+    <!-- 4. เกมตู้กาชาปอง -->
+    <div id="gacha-section" class="hidden">
+        <h2 id="gacha-title" class="mitr-font">มาเล่นเกมกานนน</h2>
+        <!-- ตู้กาชาปองจำลอง -->
+        <div id="gacha-machine">
+            <div id="gacha-capsule"></div>
+        </div>
+        <div id="gacha-game-area" class="hidden">
+            <p id="gacha-question" class="mitr-font"></p>
+            <div id="gacha-input-area">
+                <!-- ช่องกรอกตัวเลขสำหรับข้อ 1, 2 -->
+                <input type="number" id="gacha-answer-number" class="mitr-font hidden" placeholder="กดตอบ" maxlength="6">
+                <!-- ปุ่มเลือกตอบสำหรับข้อ 3 -->
+                <div id="gacha-answer-buttons" class="hidden">
+                    <button onclick="checkGachaAnswer('รัก')" class="mitr-font">รัก</button>
+                    <button onclick="checkGachaAnswer('รักมาก')" class="mitr-font">รักมาก</button>
+                </div>
+            </div>
+        </div>
+        <!-- ป๊อปอัปชมเชย -->
+        <div id="gacha-success-popup" class="hidden">
+            <h1 id="gacha-success-text" class="mitr-font"></h1>
+        </div>
+    </div>
+
+    <!-- 5. เกมต่อจิ๊กซอว์ -->
+    <div id="puzzle-section" class="hidden">
+        <div id="puzzle-container">
+            <img src="couple.jpg" alt="Love" id="puzzle-image">
+            <div id="puzzle-grid">
+                <!-- ตารางจิ๊กซอว์จะถูกสร้างด้วย JS -->
+            </div>
+        </div>
+        <!-- ข้อความจดหมาย -->
+        <div id="letter-container" class="hidden mitr-font">
+            <p id="letter-line-1"></p>
+            <p id="letter-line-2"></p>
+            <p id="letter-line-3"></p>
+            <p id="letter-line-4"></p>
+            <p id="letter-line-5"></p>
+            <p id="letter-line-6"></p>
+            <p id="letter-line-7"></p>
+            <p id="letter-line-8"></p>
+            <p id="letter-line-9"></p>
+        </div>
+    </div>
+
+    <!-- ใส่ไฟล์เพลงที่คุณเตรียมไว้ -->
+    <audio id="bg-music" src="song.mp3" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
