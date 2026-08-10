@@ -1,0 +1,263 @@
+/* --- การตั้งค่าเบื้องต้น --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    overflow: hidden;
+    font-family: sans-serif;
+    color: white;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.cooper-font {
+    font-family: 'Cooper Hewitt', sans-serif;
+    text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4; /* เรืองแสงสีชมพู */
+    color: black; /* ตัวอักษรสีดำ */
+    text-align: center;
+}
+
+.mitr-font {
+    font-family: 'Mitr', sans-serif;
+    color: #ffb6c1; /* ตัวอักษรสีชมพู */
+    text-align: center;
+    font-weight: 300;
+}
+
+/* --- 1. พื้นหลังและพลุ --- */
+#fireworks-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.firework {
+    position: absolute;
+    border-radius: 50%;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+/* จุดพลุดอกเล็ก (ระเบิดเป็นวงกลม) */
+@keyframes explosion-small {
+    0% { transform: scale(0); opacity: 1; background: radial-gradient(circle, #ff69b4, #ffb6c1); }
+    100% { transform: scale(1); opacity: 0; box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #ff69b4; }
+}
+
+/* จุดพลุดอกใหญ่ (ระเบิดเต็มจอ) */
+@keyframes explosion-big {
+    0% { transform: scale(0); opacity: 1; background: radial-gradient(circle, #fff, #ff69b4); }
+    100% { transform: scale(100); opacity: 0; }
+}
+
+#firework-small-left { top: 20%; left: 20%; animation-name: explosion-small; }
+#firework-small-right { top: 30%; right: 20%; animation-delay: 1s; animation-name: explosion-small; }
+/* ... คุณสามารถเพิ่มพลุดอกเล็กอันอื่นๆ ได้ด้วย JS ครับ ... */
+
+/* --- 2. ป๊อปอัปคำอวยพร --- */
+#anniversary-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    animation: fadeinout 15s forwards;
+}
+
+@keyframes fadeinout {
+    0% { opacity: 0; transform: translate(-50%, -60%); }
+    10% { opacity: 1; transform: translate(-50%, -50%); }
+    90% { opacity: 1; transform: translate(-50%, -50%); }
+    100% { opacity: 0; transform: translate(-50%, -40%); }
+}
+
+/* --- 3. เกมกดหัวใจ --- */
+#heart-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#heart-outer {
+    width: 200px;
+    height: 200px;
+    border: 5px solid #ffb6c1;
+    border-radius: 50% 50% 0 50%;
+    transform: rotate(-45deg);
+    position: relative;
+    cursor: pointer;
+}
+
+#heart-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0%; /* เริ่มต้นที่ 0% */
+    background-color: #ffb6c1;
+    border-radius: inherit;
+    transition: height 3s linear; /* เติมขึ้นมาภายใน 3 วินาที */
+}
+
+#heart-instruction, #heart-holding {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* --- 4. เกมตู้กาชาปอง --- */
+#gacha-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 400px;
+}
+
+#gacha-machine {
+    width: 150px;
+    height: 200px;
+    border: 5px solid #ffb6c1;
+    border-radius: 20px;
+    background: rgba(255, 182, 193, 0.2);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 20px;
+}
+
+#gacha-capsule {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #ff69b4);
+}
+
+#gacha-game-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+#gacha-answer-number, #gacha-answer-buttons button {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #ffb6c1;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 1.2em;
+}
+
+#gacha-answer-number { color: #ffb6c1; text-align: center; }
+
+#gacha-answer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#gacha-success-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 40;
+    animation: fadeinout 3s forwards;
+}
+
+/* --- 5. เกมต่อจิ๊กซอว์ --- */
+#puzzle-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-color: black;
+}
+
+#puzzle-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border: 10px solid white;
+    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+#puzzle-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#puzzle-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+    z-index: 51;
+}
+
+.puzzle-piece {
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+/* เมื่อคลิกจิ๊กซอว์จะหายไป */
+.puzzle-piece.clicked {
+    opacity: 0;
+    transform: scale(2) rotate(10deg);
+}
+
+#letter-container {
+    width: 90%;
+    max-width: 500px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0; /* เริ่มต้นมองไม่เห็น */
+    animation: fadeinletter 5s forwards;
+    animation-delay: 2s; /* เริ่มแสดงหลังจากจิ๊กซอว์หมด */
+}
+
+@keyframes fadeinletter {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+#letter-container p { margin: 0; line-height: 1.5; font-weight: 200; }
